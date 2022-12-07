@@ -1,3 +1,49 @@
-<p>
-  sign-up works!
-</p>
+<form #myForm="ngForm" (ngSubmit)="onSubmit()">
+  <fieldset>
+    <label for="lastName-order">Nom</label>
+    <input id="lastName-order" name="lastName-order" type="text" [(ngModel)]="model.lastName" #nom="ngModel" required minlength="3" maxlength="15">
+  </fieldset>
+
+  <div *ngIf="hidden">
+    <div *ngIf="nom.errors" >
+      <span *ngIf="nom.errors?.['minlength']">Le Nom doit comporter au moins 3 caractères</span>
+      <span *ngIf="nom.errors?.['maxlength']">Le Nom ne doit pas dépasser 15 caractères</span>
+    </div>
+  </div>
+
+  
+  <fieldset>
+    <label for="firstName-order">Prénom</label>
+    <input id="firstName-order" name="quantity-order" [(ngModel)]="model.firstName" #prenom="ngModel" type="text" required minlength="3" maxlength="15">
+  </fieldset>
+
+  <div *ngIf="hidden">
+    <div *ngIf="prenom.errors" >
+      <span *ngIf="prenom.errors?.['minlength']">Le Prénom doit comporter au moins 3 caractères</span>
+      <span *ngIf="prenom.errors?.['maxlength']">Le Prénom ne doit pas dépasser 15 caractères</span>
+    </div>
+  </div>
+
+
+  <fieldset>
+    <label for="email-order">Email</label>
+    <input id="email-order" name="email-order" [(ngModel)]="model.email" #email="ngModel" type="email" required email>
+  </fieldset>
+
+  <div *ngIf="hidden">
+    <div *ngIf="email.errors" >
+      <span *ngIf="email.errors?.['email']">L'email est invalid</span>
+    </div>
+  </div>
+
+
+  <fieldset>
+    <label for="password-order">Mot de passe</label>
+    <input id="password-order" name="password-order" [(ngModel)]="model.password" type="password" required>
+  </fieldset>
+
+
+
+  <button type="reset">Restaurer</button>
+  <button type="submit">Sauvegarder</button>
+</form>
